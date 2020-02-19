@@ -92,8 +92,11 @@ function mouseReleased(){
 }
 
 function keyPressed(){
-    if(keyCode === 32){
-       // slingshot.attach(bird.body);
+    if(keyCode === 32 && bird.body.speed<1){
+       slingshot.attach(bird.body);
+       bird.trajectory=[];
+       Matter.Body.setPosition(bird.body, {x:200, y:50});
+       gameState="onsling";
     }
 }
 async function getbackgroundimg(){
@@ -102,7 +105,7 @@ async function getbackgroundimg(){
     var datetime=responsejson.datetime;
     var hour=datetime.slice(11,13);
     if(hour>=06 && hour<19){
-        bg="spries/bg.png";
+        bg="sprites/bg.png";
 }
 else{
     bg="sprites/bg2.jpg";
